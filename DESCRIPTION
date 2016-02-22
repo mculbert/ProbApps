@@ -1,0 +1,9 @@
+Title: Probability Apps
+Author: Michael J. Culbertson
+AuthorUrl: https://www.linkedin.com/in/michaelculbertson
+Homepage: https://github.com/mculbert/ProbApps
+Version: 0.1
+License: AGPL-3
+DisplayMode: Normal
+Type: Shiny
+Description: Interactive simulations to explore probability and statistics
