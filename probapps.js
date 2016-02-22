@@ -10,6 +10,6 @@
   ga('send', 'pageview');
 
   $(document).on('click', "#tab > li > a", function() {
-    ga('send', 'pageview', document.location + $(this).attr('data-value')); });
+    ga('send', 'pageview', location.pathname + $(this).attr('data-value')); });
 */
 
