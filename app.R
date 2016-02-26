@@ -27,7 +27,7 @@ colorList <- list(
 
 # Load component modules
 source('descrStat.R')
-# source('longrun.R')
+source('longrun.R')
 # source('sample.R')
 # source('sampDist.R')
 # source('rand.R')
@@ -49,7 +49,9 @@ ui <- shinyUI(fluidPage(
   
   tabPanel(
     "Long-run Probability",
-    "Coming soon!",
+    includeHTML('www/longrun-instructions.html'),
+    longrun.UI('longrun'),
+    includeHTML('www/longrun-explorations.html'),
     value='longrun'
   ),
   
@@ -90,6 +92,7 @@ ui <- shinyUI(fluidPage(
 server <- shinyServer(function(input, output, session) {
 
   callModule(descrStat, 'descrStat', colorList)
+  callModule(longrun, 'longrun', colorList)
   
   # Start on About tab
   updateNavbarPage(session, 'tab', 'about')
