@@ -51,10 +51,12 @@ longrun <- function(input, output, session, colors) {
   # Simulate
   observeEvent(input$run, {
     if (input$p > 0 && input$p < 1 && input$N > 0) {
+      lastCum <- last(rv$data$cum, default=0)
+      lastI <- last(rv$data$i, default=0)
       rv$data <- bind_rows(rv$data,
                            data.frame(x=(runif(input$N) < input$p)) %>%
-                             mutate(cum=cumsum(x)+last(rv$data$cum, default=0),
-                                    i=row_number()+last(rv$data$i, default=0),
+                             mutate(cum=cumsum(x)+lastCum,
+                                    i=row_number()+lastI,
                                     cumProp=cum/i) )
       if (!input$animate) rv$n <- nrow(rv$data)
     }
