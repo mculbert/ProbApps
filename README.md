@@ -44,5 +44,6 @@ Probability Apps is free software released under the [GNU Affero General Public 
 ## Change Log
 
 * GitHub Repository
+  * Initial version of Long-run Probability
 * Version 0.1 (2016-02-21)
   * Initial version of Descriptive Statistics
