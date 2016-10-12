@@ -28,7 +28,7 @@ colorList <- list(
 # Load component modules
 source('descrStat.R')
 source('longrun.R')
-# source('sample.R')
+source('samplePop.R')
 # source('sampDist.R')
 # source('rand.R')
 # source('regr.R')
@@ -57,7 +57,9 @@ ui <- shinyUI(fluidPage(
   
   tabPanel(
     "Sample from Population",
-    "Coming soon!",
+#    includeHTML('www/samplePop-instructions.html'),
+    samplePop.UI('samplePop'),
+#    includeHTML('www/samplePop-explorations.html'),
     value='sample'
   ),
   
@@ -93,6 +95,7 @@ server <- shinyServer(function(input, output, session) {
 
   callModule(descrStat, 'descrStat', colorList)
   callModule(longrun, 'longrun', colorList)
+  callModule(samplePop, 'samplePop', colorList)
   
   # Start on About tab
   updateNavbarPage(session, 'tab', 'about')
