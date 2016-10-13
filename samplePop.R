@@ -135,6 +135,7 @@ samplePop <- function(input, output, session, colors) {
   
   # Descriptive statistics
   output$popDescr <- renderUI(tags$table(class='center',
+                                         tags$tr(tags$td(colspan=2, tags$strong("Population Distribution"))),
                                          tags$tr(                  tags$td("Minimum:"),             tags$td(style='text-align:right', sprintf("%.2f", rv$popDescr$ymin))),
                                          tags$tr(class='quartile', tags$td("First Quartile:"),      tags$td(style='text-align:right', sprintf("%.2f", rv$popDescr$q1))),
                                          tags$tr(class='median',   tags$td("Median:"),              tags$td(style='text-align:right', sprintf("%.2f", rv$popDescr$q2))),
@@ -146,6 +147,7 @@ samplePop <- function(input, output, session, colors) {
                                          tags$tr(                  tags$td('Range:'),               tags$td(style='text-align:right', sprintf("%.2f", rv$popDescr$ymax-rv$popDescr$ymin)))
   ))
   output$sampDescr <- renderUI(tags$table(class='center',
+                                          tags$tr(tags$td(colspan=2, tags$strong("Data Distribution"))),
                                           tags$tr(                  tags$td("Minimum:"),             if (length(rv$data) > 0) tags$td(style='text-align:right', sprintf("%.2f", min(rv$data)))),
                                           tags$tr(class='quartile', tags$td("First Quartile:"),      if (length(rv$data) > 0) tags$td(style='text-align:right', sprintf("%.2f", quantile(rv$data, .25)))),
                                           tags$tr(class='median',   tags$td("Median:"),              if (length(rv$data) > 0) tags$td(style='text-align:right', sprintf("%.2f", median(rv$data)))),
