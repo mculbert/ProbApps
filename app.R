@@ -29,7 +29,7 @@ colorList <- list(
 source('descrStat.R')
 source('longrun.R')
 source('samplePop.R')
-# source('sampDist.R')
+source('sampDist.R')
 # source('rand.R')
 # source('regr.R')
 
@@ -60,12 +60,14 @@ ui <- shinyUI(fluidPage(
 #    includeHTML('www/samplePop-instructions.html'),
     samplePop.UI('samplePop'),
 #    includeHTML('www/samplePop-explorations.html'),
-    value='sample'
+    value='samplePop'
   ),
   
   tabPanel(
     "Sampling Distributions",
-    "Coming soon!",
+#    includeHTML('www/sampDist-instructions.html'),
+    sampDist.UI('sampDist'),
+#    includeHTML('www/sampDist-explorations.html'),
     value='sampDist'
   ),
   
@@ -96,6 +98,7 @@ server <- shinyServer(function(input, output, session) {
   callModule(descrStat, 'descrStat', colorList)
   callModule(longrun, 'longrun', colorList)
   callModule(samplePop, 'samplePop', colorList)
+  callModule(sampDist, 'sampDist', colorList)
   
   # Start on About tab
   updateNavbarPage(session, 'tab', 'about')
