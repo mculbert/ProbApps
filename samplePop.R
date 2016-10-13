@@ -1,5 +1,5 @@
 # Probability Apps: Shiny apps for exploring probability and statistics
-# sample.R: Sample from a Population module
+# samplePop.R: Sample from a Population module
 # Copyright 2016 Michael J. Culbertson <culbert1@illinois.edu>
 # 
 # Probability Apps is free software: you can redistribute it and/or modify it
@@ -44,7 +44,7 @@ samplePop.UI <- function(id) {
     ))
 }
 
-get.pop <- function(input) {
+samplePop.get.pop <- function(input) {
   if (input$dist == 'Normal')
     data.frame(x=1:100) %>% mutate(p=dnorm(x, 50, 15), p=p/sum(p))
   else if (input$dist == 'Skewed')
@@ -55,7 +55,7 @@ get.pop <- function(input) {
     data.frame(x=1:100, p=.01)
 }
 
-sim <- function(pop, N) sample(pop$x, N, T, pop$p)
+samplePop.sim <- function(pop, N) sample(pop$x, N, T, pop$p)
 
 samplePop <- function(input, output, session, colors) {
   rv <- reactiveValues(
@@ -68,7 +68,7 @@ samplePop <- function(input, output, session, colors) {
   
   # Set the population distribution
   observe({
-    rv$pop <- get.pop(input)
+    rv$pop <- samplePop.get.pop(input)
     rv$popDescr <- data.frame(ymin=rv$pop$x[which(rv$pop$p > 0)[1]],
                               ymax=rv$pop$x[max(which(rv$pop$p > 0))],
                               q1=rv$pop$x[min(which(cumsum(rv$pop$p) >= .25))],
@@ -82,7 +82,7 @@ samplePop <- function(input, output, session, colors) {
   # Simulate
   observe({
     input$run
-    rv$fullData <- sim(rv$pop, isolate(input$N))
+    rv$fullData <- samplePop.sim(rv$pop, isolate(input$N))
     rv$N <- 0
   })
   
