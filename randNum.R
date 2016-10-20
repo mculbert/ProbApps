@@ -26,7 +26,7 @@ randNum.UI <- function(id) {
     wellPanel(fluidRow(
       column(6, 
              selectInput(ns('dist'), label="Distribution", choices=c('Integers', 'Decimals', 'Urn', 'Binary', 'Normal'), selected='Integers'),
-             conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Integers' || input['", ns('dist'), "'] == 'Text'"), checkboxInput(ns('replace'), 'With Replacement', value=T)),
+             conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Integers' || input['", ns('dist'), "'] == 'Urn'"), checkboxInput(ns('replace'), 'With Replacement', value=T)),
              conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Integers'"), numericInput(ns('max'), 'Maximum', 10, min=1, width='6em')),
              conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Binary'"), numericInput(ns('p'), 'Success Probability', 0.5, 0, 1, width='6em')),
              conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Urn'"), textAreaInput(ns('outcomes'), 'Outcomes', cols=20, rows=5))
