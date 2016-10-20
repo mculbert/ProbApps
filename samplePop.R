@@ -49,7 +49,7 @@ samplePop.get.pop <- function(input) {
     data.frame(x=1:100) %>% mutate(p=dnorm(x, 50, 15), p=p/sum(p))
   else if (input$dist == 'Skewed')
     data.frame(x=1:100) %>% mutate(p=dchisq(x/10, 4), p=p/sum(p))
-  else if (input$dist == 'Binary' && input$p > 0 && input$p < 1)
+  else if (input$dist == 'Binary' && !is.na(as.numeric(input$p)) && input$p > 0 && input$p < 1)
     data.frame(x=c(0,100), p=c(1-input$p, input$p))
   else
     data.frame(x=1:100, p=.01)
