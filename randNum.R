@@ -25,11 +25,11 @@ randNum.UI <- function(id) {
   tagList(
     wellPanel(fluidRow(
       column(6, 
-             selectInput(ns('dist'), label="Distribution", choices=c('Integers', 'Decimals', 'Text', 'Binary', 'Normal'), selected='Integers'),
+             selectInput(ns('dist'), label="Distribution", choices=c('Integers', 'Decimals', 'Urn', 'Binary', 'Normal'), selected='Integers'),
              conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Integers' || input['", ns('dist'), "'] == 'Text'"), checkboxInput(ns('replace'), 'With Replacement', value=T)),
              conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Integers'"), numericInput(ns('max'), 'Maximum', 10, min=1, width='6em')),
              conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Binary'"), numericInput(ns('p'), 'Success Probability', 0.5, 0, 1, width='6em')),
-             conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Text'"), textAreaInput(ns('outcomes'), 'Outcomes', cols=20, rows=5))
+             conditionalPanel(condition=paste0("input['", ns('dist'), "'] == 'Urn'"), textAreaInput(ns('outcomes'), 'Outcomes', cols=20, rows=5))
              ),
       column(6,
              numericInput(ns('N'), label="Sample Size", value=10, min=1, width='6em'),
@@ -62,7 +62,7 @@ randNum <- function(input, output, session, colors) {
     } else if (input$dist == 'Decimals') {
       if (!is.na(as.numeric(input$N)) && input$N > 0)
         rv$data <- c(rv$data, runif(input$N))
-    } else if (input$dist == 'Text') {
+    } else if (input$dist == 'Urn') {
       if (input$outcomes != '' && !is.na(as.numeric(input$N)) && input$N > 0) {
         outcomes <- strsplit(input$outcomes, '\n')[[1]]
         rv$data <- c(rv$data, sample(outcomes, ifelse(input$replace, input$N, min(input$N, length(outcomes))), input$replace))
