@@ -30,7 +30,7 @@ source('descrStat.R')
 source('longrun.R')
 source('samplePop.R')
 source('sampDist.R')
-# source('rand.R')
+source('randNum.R')
 # source('regr.R')
 
 
@@ -73,8 +73,10 @@ ui <- shinyUI(fluidPage(
   
   tabPanel(
     "Random Numbers",
-    "Coming soon!",
-    value='rand'
+#    includeHTML('www/randNum-instructions.html'),
+    randNum.UI('randNum'),
+#    includeHTML('www/randNum-explorations.html'),
+    value='randNum'
   ),
   
   tabPanel(
@@ -99,6 +101,7 @@ server <- shinyServer(function(input, output, session) {
   callModule(longrun, 'longrun', colorList)
   callModule(samplePop, 'samplePop', colorList)
   callModule(sampDist, 'sampDist', colorList)
+  callModule(randNum, 'randNum', colorList)
   
   # Start on About tab
   updateNavbarPage(session, 'tab', 'about')

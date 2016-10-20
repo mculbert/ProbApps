@@ -23,6 +23,7 @@ Probability Apps runs on [R](https://www.r-project.org) and requires the followi
 ```
 install.packages(c('dplyr', 'shiny', 'ggplot2'))
 ```
+Note that `shiny` must be at least version 0.14.
 
 ## Running Locally
 
@@ -44,6 +45,7 @@ Probability Apps is free software released under the [GNU Affero General Public 
 ## Change Log
 
 * GitHub Repository
+  * Initial version of Random Numbers
   * Initial version of Sampling Distributions
   * Initial version of Sample from Population
   * Initial version of Long-run Probability
