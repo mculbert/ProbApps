@@ -32,6 +32,7 @@ source('samplePop.R')
 source('sampDist.R')
 source('randNum.R')
 # source('regr.R')
+source('betaBin.R')
 
 
 ui <- shinyUI(fluidPage(
@@ -86,6 +87,14 @@ ui <- shinyUI(fluidPage(
   ),
   
   tabPanel(
+    "Beta-Binomial",
+#    includeHTML('www/betaBin-instructions.html'),
+    betaBin.UI('betaBin'),
+#    includeHTML('www/betaBin-explorations.html'),
+    value='betaBin'
+  ),
+
+tabPanel(
     "About the Apps",
     includeHTML('www/about.html'),
     value='about'
@@ -102,6 +111,7 @@ server <- shinyServer(function(input, output, session) {
   callModule(samplePop, 'samplePop', colorList)
   callModule(sampDist, 'sampDist', colorList)
   callModule(randNum, 'randNum', colorList)
+  callModule(betaBin, 'betaBin', colorList)
   
   # Start on About tab
   updateNavbarPage(session, 'tab', 'about')
